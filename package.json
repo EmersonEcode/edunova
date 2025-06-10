@@ -9,6 +9,8 @@
     "test": "nx test",
     "lint": "nx lint"
   },
+
+  
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.2.13",
