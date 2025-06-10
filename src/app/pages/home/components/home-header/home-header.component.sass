@@ -1,30 +1,139 @@
+// Variáveis
+$primary-color: #0A2463
+$secondary-color: #3E92CC
+$text-light: #fff
+$text-dark: #000
+$mobile-breakpoint: 768px
 
-header
-  background: #55893D
+// Mixins
+@mixin transition($property) 
+  transition: $property 0.3s ease
+
+
+header 
+  background: $primary-color
   width: 100%
   display: flex
   justify-content: space-between
-  height: 10%
-  flex-direction: row
-  margin-bottom: 60px
   align-items: center
+  padding: 1rem 2rem
+  position: relative
+  z-index: 1000
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
+  height: 80px
 
-button
-  background: #CAB22E
-  color: #000
-  border: none
-  width: 150px
-  height: 40px
-  margin-right: 40px
-  cursor: pointer
-  font-size: 20px
-  border-radius: 5px
+  @media (max-width: $mobile-breakpoint) 
+    padding: 1rem
+    height: 70px
+  
 
-.header-img
-  width: 120px
-  height: 70px
-  border: none
+  .header-logo 
+    width: 180px
+    height: 140px
+    height: auto
+    @include transition(opacity)
 
-  img
-    width: 100%
-    height: 100%
+    &:hover 
+      opacity: 0.9
+    
+
+    img 
+      width: 100%
+      height: 100%
+      object-fit: contain
+    
+
+    @media (max-width: $mobile-breakpoint) 
+      width: 120px
+    
+  
+
+  .mobile-menu-toggle 
+    display: none
+    background: none
+    border: none
+    cursor: pointer
+    padding: 0.5rem
+    flex-direction: column
+    justify-content: space-between
+    width: 30px
+    height: 21px
+    position: relative
+    z-index: 1001
+    img
+      width: 20px
+      height: 30px
+      align-self: center
+    @media (max-width: $mobile-breakpoint) 
+      display: flex
+    
+
+    .toggle-bar 
+      display: block
+      width: 100%
+      height: 3px
+      background: $text-light
+      border-radius: 2px
+      @include transition(all)
+    
+
+    &.active 
+      .toggle-bar 
+        &:nth-child(1) 
+          transform: translateY(8px) rotate(45deg)
+        
+        &:nth-child(2) 
+          opacity: 0
+        
+        &:nth-child(3) 
+          transform: translateY(-8px) rotate(-45deg)
+        
+      
+    
+  
+
+  .nav-container 
+    display: flex
+    align-items: center
+    gap: 2rem
+
+    @media (max-width: $mobile-breakpoint) 
+      display: none
+      position: fixed
+      top: 70px
+      left: 0
+      width: 100%
+      background: darken($primary-color, 5%)
+      flex-direction: column
+      padding: 1rem 0
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1)
+      z-index: 1000
+
+      &.active 
+        display: flex
+      
+    
+
+    .header-button 
+      background: $secondary-color
+      color: $text-light
+      border: none
+      padding: 0.6rem 1.5rem
+      font-size: 1rem
+      font-weight: 600
+      border-radius: 5px
+      cursor: pointer
+      @include transition(all)
+
+      &:hover 
+        transform: translateY(-2px)
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15)
+      
+
+      @media (max-width: $mobile-breakpoint) 
+        width: 80%
+        margin: 0 auto
+        padding: 0.8rem
+      
+    
+  

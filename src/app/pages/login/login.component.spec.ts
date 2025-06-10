@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
@@ -15,7 +14,7 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('deve criar o componente', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,49 +1,55 @@
+/* login.component.scss */
+// Variáveis
+$primary-color: #3E92CC
+$white: #fff
+$gray-light: #F5F5F5
+$gray-medium: #666
+$shadow-default: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px
+$shadow-hover: rgba(0, 0, 0, 0.3) 0px 30px 60px -10px
+$transition-time: 0.3s
+
 .main
-  background: #55893de9
   display: flex
   justify-content: center
   align-items: center
-  flex-direction: column
-  height: 100vh
-  margin: -20px 0 50px
+  width: 100%
+  transition: background-color $transition-time ease
+  height: 100%
 
-
-.container-login
-  background-color: #fff
-  border-radius: 10px
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)
+.auth-container
+  border-radius: 12px
+  width: 100%
   position: relative
   overflow: hidden
-  width: 50%
-  height: 60%
 
 
-@keyframes show
-  0%, 49.99%
-    opacity: 0
-    z-index: 1
+.auth-logo
+  max-width: 150px
+  margin: 0 auto 30px
+  display: block
 
-  50%, 100%
-    opacity: 1
-    z-index: 5
+.auth-form
+  transition: all $transition-time ease
 
-footer
-  background-color: #222
-  color: #fff
-  font-size: 14px
-  bottom: 0
-  position: fixed
-  left: 0
-  right: 0
+.auth-footer
   text-align: center
-  z-index: 999
-
-  p
-    margin: 10px 0
-
-  i
-    color: red
+  color: $gray-medium
 
   a
-    color: #3c97bf
+    color: $primary-color
+    cursor: pointer
     text-decoration: none
+    font-weight: 500
+
+    &:hover
+      text-decoration: underline
+
+// Responsividade
+@media (max-width: 768px)
+  .auth-container
+    padding: 30px 20px
+    max-width: 90%
+
+  .auth-logo
+    max-width: 120px
+    margin-bottom: 20px

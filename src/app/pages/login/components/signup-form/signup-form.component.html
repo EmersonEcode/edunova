@@ -1,15 +1,124 @@
-<div class="form-container sign-up-container">
-  <form action="#">
-    <h1>Criar Conta</h1>
-    <div class="social-container">
-      <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-      <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+<div class="auth-form">
+  <div>
+    <button class="return-to-home" (click)="redirectToHome(true)"><mat-icon>arrow_back</mat-icon></button>
+  </div>
+  <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+ 
+  <h1>Criar Conta</h1>
+
+  <div class="form-columns">
+    <!-- Coluna Esquerda -->
+    <div class="form-column">
+      <div class="form-group">
+        <!-- Nome -->
+        <input type="text" placeholder="Nome" formControlName="nome"
+          [class.input-error]="cadastroForm.controls['nome'].invalid && (cadastroForm.controls['nome'].touched || formSubmetido)" />
+        <div *ngIf="(cadastroForm.controls['nome'].invalid && (cadastroForm.controls['nome'].touched || formSubmetido))"
+          class="error-message">
+          <i class="icon-error"></i>
+          O nome é obrigatório e deve ter pelo menos 3 caracteres.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <!-- CPF/CNPJ -->
+        <input type="text" placeholder="CPF/CNPJ" formControlName="cpf" mask="CPF_CNPJ"
+          [class.input-error]="cadastroForm.controls['cpf'].invalid && (cadastroForm.controls['cpf'].touched || formSubmetido)" />
+        <div *ngIf="(cadastroForm.controls['cpf'].invalid && (cadastroForm.controls['cpf'].touched || formSubmetido))"
+          class="error-message">
+          <i class="icon-error"></i>
+          Obrigatório preenchimento do CPF/CNPJ (mínimo 9 caracteres).
+        </div>
+      </div>
+
+      <div class="form-group">
+        <!-- Telefone -->
+        <input type="tel" placeholder="(00) 0 0000-0000" formControlName="tel" mask="(00) 0 0000-0000"
+          [class.input-error]="cadastroForm.controls['tel'].invalid && (cadastroForm.controls['tel'].touched || formSubmetido)" />
+        <div *ngIf="(cadastroForm.controls['tel'].invalid && (cadastroForm.controls['tel'].touched || formSubmetido))"
+          class="error-message">
+          <i class="icon-error"></i>
+          Obrigatório preenchimento do telefone (mínimo 11 caracteres).
+        </div>
+      </div>
     </div>
-    <span>use seu email para registrar</span>
-    <input type="text" placeholder="Name" />
-    <input type="email" placeholder="Email" />
-    <input type="password" placeholder="Password" />
-    <button>Registar</button>
-  </form>
+
+    <!-- Coluna Direita -->
+    <div class="form-column">
+      <div class="form-group">
+        <!-- Email -->
+        <input type="email" placeholder="Email" formControlName="email"
+          [class.input-error]="cadastroForm.controls['email'].invalid && (cadastroForm.controls['email'].touched || formSubmetido)" />
+        <div
+          *ngIf="(cadastroForm.controls['email'].invalid && (cadastroForm.controls['email'].touched || formSubmetido))"
+          class="error-message">
+          <i class="icon-error"></i>
+          <span *ngIf="cadastroForm.controls['email'].errors?.['required']">O email é obrigatório.</span>
+          <span *ngIf="cadastroForm.controls['email'].errors?.['email']">Formato de email inválido.</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <!-- Senha -->
+        <input type="password" placeholder="Senha" formControlName="password"
+          [class.input-error]="cadastroForm.controls['password'].invalid && (cadastroForm.controls['password'].touched || formSubmetido)" />
+        <div
+          *ngIf="(cadastroForm.controls['password'].invalid && (cadastroForm.controls['password'].touched || formSubmetido))"
+          class="error-message">
+          <i class="icon-error"></i>
+          <span *ngIf="cadastroForm.controls['password'].errors?.['required']">A senha é obrigatória.</span>
+          <span *ngIf="cadastroForm.controls['password'].errors?.['pattern']">
+            A senha deve ter pelo menos 8 caracteres, incluindo um número e um caractere especial.
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <!-- Confirmação de Senha -->
+        <input type="password" placeholder="Confirme sua senha" formControlName="confirmPassword"
+          [class.input-error]="(cadastroForm.hasError('passwordMismatch') && (cadastroForm.touched || formSubmetido)) || 
+                           (cadastroForm.controls['confirmPassword'].invalid && (cadastroForm.controls['confirmPassword'].touched || formSubmetido))" />
+
+        <div *ngIf="cadastroForm.hasError('passwordMismatch') && (cadastroForm.touched || formSubmetido)"
+          class="error-message">
+          <i class="icon-error"></i>
+          As senhas não coincidem.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Termos e Condições (ocupa as duas colunas) -->
+  <div class="form-group terms-group">
+    <label class="checkbox-container">
+      <input type="checkbox" formControlName="terms" id="terms" />
+      <span class="checkmark"></span>
+      Aceito os <a href="#" target="_blank" class="terms-link">termos e condições</a>
+    </label>
+    <div *ngIf="cadastroForm.get('terms')?.invalid && (cadastroForm.get('terms')?.touched || formSubmetido)"
+      class="error-message">
+      <i class="icon-error"></i>
+      Você deve aceitar os termos para continuar.
+    </div>
+  </div>
+
+  <!-- Mensagem de erro geral -->
+  <div *ngIf="cadastroForm.invalid && formSubmetido" class="error-message general-error">
+    <i class="icon-error"></i>
+    Por favor, corrija os erros antes de continuar.
+  </div>
+  <div *ngIf="serverError" class="error-message server-error">
+    <mat-icon class="material-icons-outlined">error</mat-icon>
+    {{ serverError }}
+  </div>
+
+  <button class="btn" type="submit" [disabled]="cadastroForm.invalid && formSubmetido">
+    <span *ngIf="!isSubmitting">Registrar</span>
+    <span *ngIf="isSubmitting" class="loading-spinner"></span>
+  </button>
+  <div class="auth-footer">
+    <span>Já tem uma Conta?</span>
+    <button (click)="redirectToLogin(true)">Fazer Login</button>
+  </div>
+</form>
 </div>

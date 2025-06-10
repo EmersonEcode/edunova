@@ -1,0 +1,32 @@
+<div class="card">
+    <img class="item-and-price_img" [src]="imagem" alt="{{ name }}" />
+    <div class="info-content">
+      <div class="primary-text">
+      <h3>{{ name }}</h3>
+    </div>
+
+    <div class="info">
+      <span class="categoria">{{ categoria }}</span>
+      <span class="concentracao">{{ concentracao }}</span>
+    </div>
+
+    <div class="final-text">
+      {{ descricao }}
+    </div>
+
+    <div class="item-and-price">
+      <span class="preco">{{ preco }} R$</span>
+    </div>
+
+    @if (!status) {
+      <button class="btnEs" disabled>Esgotado!</button>
+    } @else {
+        @if(btnTitle === 'Ver Curso'){
+            <button class="btn" (click)="returnToLogin()">{{btnTitle}}</button>
+        }@else {
+            <button class="btn" (click)="addToCart(produto)">{{btnTitle}}</button>
+
+        }
+    }
+    </div>
+</div>

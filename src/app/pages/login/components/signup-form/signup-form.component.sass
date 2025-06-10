@@ -1,99 +1,276 @@
+// Variáveis
+$primary-color: #00A8E8
+$secondary-color: #3E92CC
+$white: #FFFFFF
+$gray-light: #f5f5f5
+$gray-medium: #e0e0e0
+$gray-dark: #333
+$error-color: #d32f2f
+$success-color: #3E92CC
+$border-radius: 8px
+$transition-time: 0.3s
 
-.sign-up-container
-  left: 0
-  width: 50%
-  opacity: 0
-  z-index: 1
 
-  .container.right-panel-active &
-    transform: translateX(100%)
-    opacity: 1
-    z-index: 5
-    animation: show 0.6s
+// Formulário
+.auth-form
+  width: 100%
+  max-width: 800px
+  margin: 0 auto
+  padding: 2rem
+  background: $white
+  border-radius: $border-radius
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1)
+  overflow-y: auto // Adiciona scroll se necessário
+  max-height: 95vh // Limita a altura para caber na tela
+  position: relative // Mantém o posicionamento controlado
 
-h1
-  font-weight: bold
-  margin: 0
+  h1
+    text-align: center
+    margin-bottom: 1.5rem
+    color: $primary-color
+    font-size: 1.8rem
 
-p
-  font-size: 14px
-  font-weight: 100
-  line-height: 20px
-  letter-spacing: 0.5px
-  margin: 20px 0 30px
+// Container das colunas
+.form-columns
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 1.5rem
+  margin-bottom: 1rem
 
-span
-  font-size: 12px
+// Colunas individuais
+.form-column
+  display: flex
+  flex-direction: column
+  gap: 1rem
 
-a
-  color: #333
-  font-size: 14px
-  text-decoration: none
-  margin: 15px 0
+// Grupos de formulário
+.form-group
+  display: flex
+  flex-direction: column
+  gap: 0.3rem
+  min-height: 80px // Altura mínima para acomodar erros
 
-button
-  border-radius: 20px
-  border: 1px solid #59a038
-  background-color: #55893D
-  color: #FFFFFF
-  font-size: 12px
-  font-weight: bold
-  padding: 12px 45px
-  letter-spacing: 1px
-  text-transform: uppercase
-  transition: transform 80ms ease-in
+.return-to-home
+  padding: 10px
+  border: none
+  background-color: transparent
   cursor: pointer
+  border-radius: 10px
+  &:hover
+        transform: translateY(-2px)
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15)
 
-  &:active
-    transform: scale(0.95)
+// Inputs
+input
+  width: 100%
+  padding: 10px 14px
+  border: 1px solid $gray-medium
+  border-radius: $border-radius
+  font-size: 0.9rem
+  transition: all $transition-time ease
+  background-color: $white
 
   &:focus
+    border-color: $primary-color
+    box-shadow: 0 0 0 2px rgba($primary-color, 0.2)
     outline: none
 
-  &.ghost
-    background-color: transparent
-    border-color: #FFFFFF
+  &.input-error
+    border-color: $error-color
+    background-color: rgba($error-color, 0.03)
 
-form
-  background-color: #FFFFFF
+// Checkbox personalizado
+.checkbox-container
+  display: flex
+  align-items: center
+  position: relative
+  padding-left: 28px
+  cursor: pointer
+  user-select: none
+  font-size: 0.9rem
+  margin-top: 0.5rem
+
+  input
+    position: absolute
+    opacity: 0
+    cursor: pointer
+    height: 0
+    width: 0
+
+  .checkmark
+    position: absolute
+    left: 0
+    height: 18px
+    width: 18px
+    background-color: $white
+    border: 1px solid $gray-medium
+    border-radius: 4px
+    transition: all $transition-time ease
+
+    &:after
+      content: ""
+      position: absolute
+      display: none
+      left: 6px
+      top: 2px
+      width: 5px
+      height: 10px
+      border: solid $white
+      border-width: 0 2px 2px 0
+      transform: rotate(45deg)
+
+  input:checked ~ .checkmark
+    background-color: $primary-color
+    border-color: $primary-color
+
+    &:after
+      display: block
+
+  .terms-link
+    color: $primary-color
+    text-decoration: none
+    font-weight: 500
+    margin-left: 0.3rem
+
+    &:hover
+      text-decoration: underline
+
+// Mensagens de erro
+.error-message
+  color: $error-color
+  font-size: 0.75rem
+  display: flex
+  align-items: flex-start
+  gap: 0.5rem
+  padding: 0.5rem
+  background-color: rgba($error-color, 0.05)
+  border-radius: $border-radius
+  animation: fadeIn $transition-time ease
+  word-break: break-word // Quebra texto longo
+  max-width: 100% // Limita a largura
+
+  .icon-error
+    flex-shrink: 0 // Impede que o ícone diminua
+    width: 16px
+    height: 16px
+    background-color: $error-color
+    color: $white
+    border-radius: 50%
+    text-align: center
+    line-height: 16px
+    font-size: 12px
+    font-weight: bold
+
+  &.general-error
+    margin: 0.5rem 0
+    grid-column: span 2
+
+// Botão
+.btn
+  width: 100%
+  padding: 14px
+  background-color: $primary-color
+  color: $white
+  border: none
+  border-radius: $border-radius
+  font-size: 1rem
+  font-weight: 600
+  cursor: pointer
+  transition: all $transition-time ease
+  margin-top: 1rem
+  position: relative
+  height: 46px
+
+  &:hover
+    background-color: darken($primary-color, 8%)
+
+  &:disabled
+    background-color: lighten($primary-color, 20%)
+    cursor: not-allowed
+    opacity: 0.7
+
+// Rodapé do formulário
+.auth-footer
   display: flex
   align-items: center
   justify-content: center
-  flex-direction: column
-  padding: 0 50px
-  height: 100%
-  text-align: center
+  gap: 0.5rem
+  margin-top: 1.5rem
+  padding-top: 1.5rem
+  border-top: 1px solid $gray-light
+  font-size: 0.9rem
+  color: $gray-dark
 
-input
-  background-color: #eee
-  border: none
-  padding: 12px 15px
-  margin: 8px 0
-  width: 100%
+  button
+    background: none
+    border: none
+    color: $primary-color
+    font-weight: 500
+    cursor: pointer
+    padding: 0.25rem 0.5rem
+    border-radius: 4px
+    transition: all $transition-time ease
+    font-size: 0.9rem
 
-.form-container
+    &:hover
+      text-decoration: underline
+      background-color: rgba($primary-color, 0.1)
+
+    &:focus
+      outline: none
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.3)
+// Animações
+@keyframes fadeIn
+  from
+    opacity: 0
+    transform: translateY(-5px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+// Responsividade
+@media (max-width: 768px)
+  .auth-form
+    padding: 1.5rem
+    max-height: 90vh // Ajuste para mobile
+
+  .form-columns
+    grid-template-columns: 1fr
+    gap: 1rem
+
+  .btn
+    padding: 10px
+
+@media (max-width: 480px)
+  .auth-form
+    padding: 1rem
+    border: 1px solid $gray-medium
+    box-shadow: none
+    max-height: 85vh // Mais espaço para mobile
+
+  h1
+    font-size: 1.5rem
+    margin-bottom: 1rem
+
+  input
+    padding: 8px 12px
+    font-size: 0.85rem
+
+
+.loading-spinner
+  position: relative
+  display: inline-block
+  width: 20px
+  height: 20px
+  border: 3px solid rgba($white, 0.3)
+  border-radius: 50%
+  border-top-color: $white
+  animation: spin 1s ease-in-out infinite
   position: absolute
-  top: 0
-  height: 100%
-  transition: all 0.6s ease-in-out
+  left: 50%
+  transform: translateX(-50%)
 
 
-h1
-  font-weight: bold
-  margin: 0
-
-p
-  font-size: 14px
-  font-weight: 100
-  line-height: 20px
-  letter-spacing: 0.5px
-  margin: 20px 0 30px
-
-span
-  font-size: 12px
-
-a
-  color: #333
-  font-size: 14px
-  text-decoration: none
-  margin: 15px 0
+@keyframes spin
+  to
+    transform: translateX(-50%) rotate(360deg)

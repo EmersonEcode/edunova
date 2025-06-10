@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="cart-container">
+    <div class="cart-header">
+      <span>Carrinho</span>
+
+    </div>
+    <ol>
+      @for (item of carrinho; track $index) {
+        <li class="cart-item">
+          <img [src]="item.imagem" alt="{{ item.name }}">
+          <div class="item-info">
+            <strong>{{ item.name }}</strong>
+            <p>R$ {{ item.preco?.toFixed(2) }}</p>
+            
+          </div>
+        
+          <button class="remove-button" (click)="removeProductItem($index)"><mat-icon>delete</mat-icon></button>
+        </li>
+      }
+    </ol>
+    @if(totalCarrinho > 0){
+      <span>Total: R$ {{ totalCarrinho.toFixed(2) }}</span>
+      <button class="finalize-button" (click)="finalizarCompra()">
+        Finalizar Compra
+      </button>
+    }@else {
+      <span style="color: gray"> O carrinho está vazio!</span>
+    }
+
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<header>
+  <div class="logo-and-menu">
+    <div class="menu">
+       <button (click)="openMenu()" (focus)="openMenu()"><mat-icon class="menu-icon">menu</mat-icon></button>
+    <div class="menu-conf">
+      @if (openMenuBool) {
+      <app-menu-header (typeDashboardEventEmiiter)="typeMenuEventEmitterEmit($event)" (mouseleave)="openMenu()"></app-menu-header>
+    }
+    </div>
+    </div>
+
+
+    <img class="header-img" src="../../../../assets/logo-header/logo.png" alt="">
+  </div>
+  <div class="serch">
+    <!-- <app-search></app-search> -->
+  </div>
+  <div class="nav">
+    <div class="perfil">
+      @if(typeLogin === 'google'){
+        <button (click)="openPerfil()" (focus)="openPerfil()" >
+          <img class="img-user-google" src={{infoUser?.picture}} alt="">
+        <span> {{getUserName() }}</span>
+        @if (openPerfilBool){
+          <mat-icon>arrow_drop_up</mat-icon>
+        }@else {
+          <mat-icon>arrow_drop_down</mat-icon>
+        }
+        </button>
+        <div class="perfil-conf">
+          @if (openPerfilBool) {
+            <app-perfil-user (mouseleave)="openPerfil()"> </app-perfil-user>
+          }
+        </div>
+      }@else if(typeLogin === 'email'){
+        <button (click)="openPerfil()" >
+          <mat-icon>person</mat-icon>
+        <span> {{getUserName() }}</span>
+        @if (openPerfilBool){
+          <mat-icon>arrow_drop_up</mat-icon>
+        }@else {
+          <mat-icon>arrow_drop_down</mat-icon>
+        }
+        </button>
+        <div class="perfil-conf">
+          @if (openPerfilBool) {
+            <app-perfil-user (mouseleave)="openPerfil()"></app-perfil-user>
+          }
+        </div>
+      }
+      
+    </div>
+      <div class="carrinho">
+      
+          <button  (click)="openCarrinho()" (focus)="openCarrinho()">
+            <span>{{quantidadeProdutosNoCarrinho}}</span>
+            <mat-icon class="icon-shart">shopping_cart</mat-icon>
+          </button>
+          <div class="carrinho-conf">
+            @if (openCarrinhoBool) {
+            <app-shopping-shart (totalProductsInTheCart)="getProductInTheShart($event)" (click)="openCarrinho()"></app-shopping-shart>
+          }
+          </div>
+          
+    </div>
+    </div>
+</header>
+

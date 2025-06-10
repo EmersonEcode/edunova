@@ -1,0 +1,274 @@
+// Variáveis atualizadas
+$primary-color: #4361ee
+$secondary-color: #7209b7
+$danger-color: #f72585
+$success-color: #4cc9f0
+$border-color: #e9ecef
+$border-radius: 0.5rem
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+$transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)
+
+// Mixins
+@mixin card-style 
+  background: white
+  border-radius: $border-radius
+  box-shadow: $box-shadow
+  overflow: hidden
+  transition: $transition
+
+
+@mixin input-focus 
+  border-color: $primary-color
+  box-shadow: 0 0 0 3px rgba($primary-color, 0.2)
+  outline: none
+
+
+// Container principal
+.container
+  max-width: 90%
+  margin: 2rem auto
+  padding: 0 1rem
+  animation: fadeIn 0.5s ease-out
+
+  h2
+    color: darken($primary-color, 15%)
+    margin-bottom: 2rem
+    font-weight: 700
+    font-size: 1.8rem
+    position: relative
+    padding-bottom: 0.5rem
+    
+    &::after
+      content: ''
+      position: absolute
+      bottom: 0
+      left: 0
+      width: 60px
+      height: 3px
+      background: linear-gradient(to right, $primary-color, $success-color)
+      border-radius: 3px
+
+// Estilo do formulário
+form
+  @include card-style
+  padding: 2rem
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+  gap: 1.5rem
+  border: 1px solid rgba($primary-color, 0.1)
+  display: grid
+  grid-column: span 3
+  &:hover
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1)
+
+// Seções do formulário
+fieldset
+  grid-column: span 1
+  border: 1px solid rgba($primary-color, 0.15)
+  border-radius: $border-radius
+  padding: 1.5rem
+  margin-bottom: 0
+  background: rgba($primary-color, 0.02)
+  transition: $transition
+
+  &:hover
+    border-color: rgba($primary-color, 0.3)
+    background: rgba($primary-color, 0.05)
+
+  legend
+    color: $primary-color
+    font-size: 1.1rem
+    font-weight: 600
+    background: white
+    padding: 0.3rem 1rem
+    border-radius: $border-radius
+    border: 1px solid rgba($primary-color, 0.2)
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05)
+
+// Controles do formulário
+.form-group
+  margin-bottom: 1.25rem
+  position: relative
+
+  &:last-child
+    margin-bottom: 0
+
+.form-label
+  display: block
+  margin-bottom: 1rem
+  margin-top: 1rem
+  font-weight: 600
+  color: darken($secondary-color, 10%)
+  font-size: 0.9rem
+  transition: $transition
+
+  &.required::after
+    content: '*'
+    color: $danger-color
+    margin-left: 0.25rem
+
+.form-control, .form-select
+  width: 100%
+  padding: 0.75rem 1rem
+  border: 1px solid $border-color
+  border-radius: $border-radius
+  font-size: 0.95rem
+  transition: $transition
+  background-color: rgba(white, 0.8)
+
+  &:focus
+    @include input-focus
+    background-color: white
+
+.form-select
+  appearance: none
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%234361ee' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E")
+  background-repeat: no-repeat
+  background-position: right 1rem center
+  background-size: 16px 12px
+
+// Estilo para erros
+.text-danger
+  display: block
+  margin-top: 0.5rem
+  font-size: 0.8rem
+  color: $danger-color
+  font-weight: 500
+  animation: fadeIn 0.3s ease-out
+
+// Botões
+.btn
+  border: none
+  border-radius: $border-radius
+  padding: 0.75rem 1.5rem
+  font-weight: 600
+  font-size: 0.95rem
+  cursor: pointer
+  transition: $transition
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  gap: 0.5rem
+
+  &-primary
+    background: linear-gradient(135deg, $primary-color, $secondary-color)
+    color: white
+    box-shadow: 0 2px 5px rgba($primary-color, 0.3)
+
+    &:hover
+      background: linear-gradient(135deg, darken($primary-color, 5%), darken($secondary-color, 5%))
+      transform: translateY(-2px)
+      box-shadow: 0 4px 8px rgba($primary-color, 0.4)
+
+  &-outline-secondary
+    border: 1px solid $secondary-color
+    color: $secondary-color
+    background: transparent
+
+    &:hover
+      background: $secondary-color
+      color: white
+
+// Grupo de botões
+.button-group
+  grid-column: span 2
+  display: flex
+  justify-content: flex-end
+  gap: 1rem
+  margin-top: 1rem
+
+// Pré-visualização da imagem
+.img-preview
+  margin-top: 1rem
+  border: 2px dashed rgba($primary-color, 0.2)
+  border-radius: $border-radius
+  padding: 0.5rem
+  display: flex
+  justify-content: center
+  align-items: center
+  transition: $transition
+
+  img
+    max-height: 150px
+    border-radius: calc($border-radius - 0.2rem)
+
+  &:hover
+    border-color: rgba($primary-color, 0.4)
+
+// Range input customizado
+.form-range
+  -webkit-appearance: none
+  width: 100%
+  height: 8px
+  border-radius: 4px
+  background: $border-color
+  outline: none
+  margin: 1rem 0
+
+  &::-webkit-slider-thumb
+    -webkit-appearance: none
+    width: 20px
+    height: 20px
+    border-radius: 50%
+    background: $primary-color
+    cursor: pointer
+    transition: $transition
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
+
+    &:hover
+      transform: scale(1.1)
+      background: darken($primary-color, 10%)
+
+// Switch customizado
+.form-switch
+  .form-check-input
+    width: 3em
+    height: 1.5em
+    margin-right: 0.5rem
+    background-color: $border-color
+    border: none
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='white'/%3e%3c/svg%3e")
+    
+    &:checked
+      background-color: $primary-color
+      background-position: right center
+
+// Animações
+@keyframes fadeIn
+  from
+    opacity: 0
+    transform: translateY(10px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+// Responsividade
+@media (max-width: 768px)
+  form
+    grid-template-columns: 1fr
+    padding: 1.5rem
+  
+  fieldset
+    grid-column: span 1
+  
+  .button-group
+    flex-direction: column
+    gap: 0.75rem
+    
+    .btn
+      width: 100%
+
+.text-muted 
+  margin-top: 10px
+
+.return-to-list
+  margin-bottom: 10px
+  padding: 10px
+  border: none
+  background-color: transparent
+  cursor: pointer
+  border-radius: 10px
+  &:hover
+        transform: translateY(-2px)
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15)
+// Inputs

@@ -1,8 +1,23 @@
+<!-- eslint-disable @angular-eslint/template/valid-aria -->
 <header>
-  <div class="header-img">
-    <img src="../../../../../assets/logo-header/logo.png" alt="logo cannabis planta e texto">
+  <div class="header-logo">
+    <img src="assets/logo-header/logo.png" alt="logo cannabis planta e texto">
   </div>
-  <button>
-    Fazer Login
-  </button>
+  
+  <button class="mobile-menu-toggle" 
+          (click)="toggleMenu()"
+          [class.active]="isMenuOpen"
+          aria-label="Menu mobile"
+          aria-expanded="isMenuOpen">
+          <img src="../../../../../assets/menu.png" alt="">
+    <span class="toggle-bar"></span>
+    <span class="toggle-bar"></span>
+    <span class="toggle-bar"></span>
+</button>
+  
+  <nav class="nav-container" [class.active]="isMenuOpen">
+    <button class="header-button" (click)="verifyLogin(); closeMenu()">
+      Fazer Login
+    </button>
+  </nav>
 </header>

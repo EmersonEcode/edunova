@@ -1,0 +1,224 @@
+// Variáveis atualizadas
+$primary-color: #4361ee
+$secondary-color: #7209b7
+$success-color: #4cc9f0
+$danger-color: #f72553
+$info-color: #4895ef
+$border-color: #e9ecef
+$border-radius: 0.5rem
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+$transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)
+@import "~@angular/material/prebuilt-themes/indigo-pink.css"
+// Container principal
+.container
+  max-width: 1200px
+  margin: 2rem auto
+  padding: 0 1.5rem
+  animation: fadeIn 0.5s ease-out
+
+  // Cabeçalho
+  .d-flex
+    margin-bottom: 2rem
+    align-items: center
+    
+    h2
+      color: darken($primary-color, 15%)
+      font-weight: 700
+      font-size: 1.8rem
+      margin: 0
+      position: relative
+      
+      &::after
+        content: ''
+        position: absolute
+        bottom: -8px
+        left: 0
+        width: 60px
+        height: 3px
+        background: linear-gradient(to right, $primary-color, $success-color)
+        border-radius: 3px
+
+    .btn-success
+      background: linear-gradient(135deg, $success-color, darken($success-color, 10%))
+      border: none
+      padding: 0.75rem 1.5rem
+      font-weight: 600
+      border-radius: $border-radius
+      box-shadow: $box-shadow
+      transition: $transition
+      display: flex
+      align-items: center
+      gap: 0.5rem
+      
+      &:hover
+        transform: translateY(-2px)
+        box-shadow: 0 6px 12px rgba($success-color, 0.3)
+        background: linear-gradient(135deg, darken($success-color, 5%), darken($success-color, 15%))
+
+// Spinner de carregamento
+.text-center
+  padding: 3rem 0
+  
+  .spinner-border
+    width: 3rem
+    height: 3rem
+    border-width: 0.25em
+    border-color: $primary-color transparent $primary-color transparent
+    animation: spinner 1s linear infinite
+
+// Mensagem de lista vazia
+.alert-info
+  background: rgba($info-color, 0.1)
+  border: 1px solid rgba($info-color, 0.3)
+  color: darken($info-color, 20%)
+  border-radius: $border-radius
+  padding: 1.25rem
+  font-weight: 500
+  text-align: center
+  box-shadow: $box-shadow
+
+// Tabela de produtos
+.table
+  width: 100%
+  border-collapse: separate
+  border-spacing: 0
+  background: white
+  border-radius: $border-radius
+  overflow: hidden
+  box-shadow: $box-shadow
+  animation: fadeInUp 0.5s ease-out
+  
+  thead
+    background: linear-gradient(135deg, $primary-color, $secondary-color)
+    
+    th
+      color: white
+      font-weight: 600
+      padding: 1rem 1.5rem
+      text-align: left
+      position: relative
+      
+      &:not(:last-child)::after
+        content: ''
+        position: absolute
+        right: 0
+        top: 50%
+        transform: translateY(-50%)
+        height: 60%
+        width: 1px
+        background: rgba(white, 0.3)
+
+  tbody
+    tr
+      transition: $transition
+      
+      &:hover
+        background: rgba($primary-color, 0.03)
+        transform: translateY(-1px)
+      
+      td
+        padding: 1rem 1.5rem
+        border-bottom: 1px solid rgba($border-color, 0.5)
+        vertical-align: middle
+        
+        &:first-child
+          font-weight: 500
+          color: darken($primary-color, 15%)
+        
+        .badge
+          padding: 0.5rem 0.75rem
+          font-weight: 600
+          font-size: 0.8rem
+          border-radius: $border-radius
+          text-transform: uppercase
+          letter-spacing: 0.5px
+          
+          &.bg-success
+            background: rgba($success-color, 0.2) !important
+            color: darken($success-color, 20%)
+          
+          &.bg-danger
+            background: rgba($danger-color, 0.2) !important
+            color: darken($danger-color, 20%)
+            display: flex
+            
+
+// Botões de ação
+.btn
+  margin-top: 10px
+  margin-left: 10px
+  border: none
+  border-radius: $border-radius
+  padding: 0.5rem 1rem
+  font-weight: 600
+  font-size: 0.85rem
+  cursor: pointer
+  transition: $transition
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  gap: 0.3rem
+  
+  &-sm
+    padding: 0.4rem 0.8rem
+    font-size: 0.8rem
+  
+  &-primary
+    background: rgba($primary-color, 0.1)
+    color: $primary-color
+    
+    &:hover
+      background: $primary-color
+      color: white
+      box-shadow: 0 2px 8px rgba($primary-color, 0.3)
+  
+  &-danger
+    background: rgba($danger-color, 0.1)
+    color: $danger-color
+    
+    &:hover
+      background: $danger-color
+      color: white
+      box-shadow: 0 2px 8px rgba($danger-color, 0.3)
+
+// Animações
+@keyframes fadeIn
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes fadeInUp
+  from
+    opacity: 0
+    transform: translateY(20px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes spinner
+  to
+    transform: rotate(360deg)
+
+// Responsividade
+@media (max-width: 992px)
+  .table
+    display: block
+    overflow-x: auto
+    white-space: nowrap
+    
+    thead th
+      padding: 0.75rem 1rem
+    
+    tbody td
+      padding: 0.75rem 1rem
+
+@media (max-width: 576px)
+  .container .d-flex
+    flex-direction: column
+    align-items: flex-start
+    gap: 1rem
+    
+    .btn-success
+      width: 100%
+      justify-content: center

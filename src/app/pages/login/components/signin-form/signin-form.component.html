@@ -1,15 +1,74 @@
-<div class="form-container sign-in-container">
-  <form action="#">
-    <h1>Fazer Login</h1>
-    <div class="social-container">
-      <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-      <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+<div class="auth-form">
+  <button class="return-to-home" (click)="redirectToHome(true)"><mat-icon>arrow_back</mat-icon></button>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h1>Fazer Login</h1>
+
+  <div class="form-group">
+    <input
+      type="email"
+      placeholder="Email"
+      formControlName="email"
+      [class.input-error]="(f['email'].invalid && (f['email'].touched || formSubmetido))" />
+
+    <div *ngIf="f['email'].invalid && (f['email'].touched || formSubmetido)" class="error-message">
+      <mat-icon>error</mat-icon>
+      <span *ngIf="f['email'].errors?.['required']"> O email é obrigatório.</span>
+      <span *ngIf="f['email'].errors?.['email']">Formato de email inválido.</span>
     </div>
-    <span>ou use sua conta</span>
-    <input type="email" placeholder="Email" />
-    <input type="password" placeholder="Password" />
-    <a href="#">Esqueceu sua senha?</a>
-    <button>Fazer Login</button>
-  </form>
+  </div>
+
+  <div class="form-group">
+    <div class="password-container">
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        placeholder="Senha"
+        formControlName="password"
+        [class.input-error]="(f['password'].invalid && (f['password'].touched || formSubmetido))" />
+
+      <button
+        type="button"
+        class="toggle-password"
+        (click)="togglePasswordVisibility()"
+        [attr.aria-label]="showPassword ? 'Ocultar senha' : 'Mostrar senha'">
+        <mat-icon>
+          {{ showPassword ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+      </button>
+    </div>
+
+    <div *ngIf="f['password'].invalid && (f['password'].touched || formSubmetido)" class="error-message">
+      <mat-icon>error</mat-icon>
+      <span *ngIf="f['password'].errors?.['required']">A senha é obrigatória.</span>
+      <span *ngIf="f['password'].errors?.['pattern']">
+        A senha deve ter pelo menos 8 caracteres, incluindo um número e um caractere especial.
+      </span>
+    </div>
+  </div>
+
+  <div class="form-options">
+    <label class="remember-me">
+      <input type="checkbox" formControlName="rememberMe">
+      <span class="checkmark"></span>
+      Manter conectado
+    </label>
+    <a routerLink="/forgot-password" class="forgot-password">Esqueceu a senha?</a>
+  </div>
+
+  <div *ngIf="serverError" class="error-message server-error">
+    <mat-icon class="material-icons-outlined">error</mat-icon>
+    {{ serverError }}
+  </div>
+
+  <button class="btn" type="submit" [disabled]="isSubmitting">
+    <span *ngIf="!isSubmitting">Entrar</span>
+    <span *ngIf="isSubmitting" class="loading-spinner"></span>
+  </button>
+  <div id="googleBtn" class="googleBtn"></div>
+
+  <div class="auth-footer">
+    <span>Ainda não tem uma Conta?</span>
+    <button (click)="redirectToRegister(false)" class="auth-link">Cadastre-se</button>
+  </div>
+</form>
 </div>

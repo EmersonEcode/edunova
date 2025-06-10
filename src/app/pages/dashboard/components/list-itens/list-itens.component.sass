@@ -1,0 +1,178 @@
+.content
+  display: flex
+  flex-direction: column
+  align-items: center
+.list-itens
+  width: 100%
+  height: 100%
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(23%, 1fr))
+  gap: 60px
+  padding: 4%
+
+.card
+  width: 100%
+  height: 100% // Alterado para 100% para melhor controle
+  min-height: 380px // Altura mínima garantida
+  background-color: #fff
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  padding: 0
+  align-items: center
+  border-radius: 16px
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08)
+  transition: transform 0.2s ease-in-out
+  overflow: hidden // Importante para conteúdo uniforme
+
+  &:hover
+    transform: translateY(-6px)
+
+// Container principal do conteúdo
+.info-content
+  padding: 8%
+  display: flex
+  flex-direction: column
+  width: 100%
+  height: 100% // Ocupa toda altura disponível
+  flex-grow: 1 // Cresce para preencher espaço
+
+// Seção de imagem (altura fixa proporcional)
+.item-and-price_img
+  width: 100%
+  height: 160px // Altura fixa para imagens
+  object-fit: cover
+  border-radius: 5px
+  margin-bottom: 16px
+  flex-shrink: 0 // Impede redução
+
+// Texto principal (com tratamento para múltiplas linhas)
+.primary-text
+  font-size: 16px
+  font-weight: 700
+  text-align: center
+  margin-bottom: 8px
+  display: -webkit-box
+  -webkit-line-clamp: 2 // Limita a 2 linhas
+  -webkit-box-orient: vertical
+  overflow: hidden
+  min-height: 50px // Altura mínima para 2 linhas
+  padding: 2%
+// Container de informações (crescimento controlado)
+.info
+  display: flex
+  flex-direction: column
+  width: 100%
+  gap: 4px
+  margin-bottom: 12px
+  font-size: 13px
+  color: #555
+  padding: 2% 8% // Ajuste horizontal
+  flex-grow: 1 // Preenche espaço disponível
+
+  .categoria
+    font-weight: 600
+    color: #3f51b5
+    margin-top: auto // Empurra para baixo
+
+  .concentracao
+    font-style: italic
+    color: #888
+    margin-bottom: auto // Empurra para cima
+
+// Seção inferior fixa
+.item-and-price
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center // Alinhamento vertical
+  width: 100%
+  padding: 8%
+  flex-shrink: 0 // Impede redução
+  margin-top: auto // Fixa no final
+
+.preco
+  font-weight: bold
+  color: #2ECC71
+  font-size: 16px
+  white-space: nowrap // Evita quebra de linha
+
+.final-text
+  font-size: 13px
+  color: #666
+  text-align: center
+  padding: 4%
+  margin-top: auto
+  flex-shrink: 0
+  display: -webkit-box
+  -webkit-line-clamp: 2 // Limita a 2 linhas
+  -webkit-box-orient: vertical
+  overflow: hidden
+
+.btn
+  width: 100%
+  margin-top: 16px
+  padding: 12px
+  font-weight: bold
+  font-size: 14px
+  display: flex
+  justify-content: center
+  align-items: center
+  border-radius: 12px
+  border: none
+  cursor: pointer
+  background-color: #3E92CC
+  color: white
+  transition: all 0.2s ease-in-out
+
+  &:hover
+    background-color: #0073c5
+    transform: scale(1.05)
+
+.btnEs
+  width: 100%
+  margin-top: 8px
+  padding: 12px
+  font-weight: bold
+  font-size: 14px
+  display: flex
+  justify-content: center
+  align-items: center
+  border-radius: 12px
+  border: none
+  cursor: pointer
+  background-color: #9e9e9e
+  color: white
+
+.paginacao
+  display: flex
+  justify-content: center
+  gap: 0.75rem
+  margin-top: 2rem
+  flex-wrap: wrap
+
+.btn-pagina
+  padding: 0.6rem 1.2rem
+  background-color: #eeeeee
+  border: 1px solid #bbb
+  border-radius: 12px
+  cursor: pointer
+  font-weight: 600
+  color: #333
+  transition: all 0.2s ease-in-out
+
+  &:hover
+    background-color: #d6d6d6
+    transform: scale(1.05)
+
+  &.ativa
+    background-color: #3E92CC
+    color: white
+    border: 1px solid #3E92CC
+    font-weight: bold
+
+
+
+.filter
+  align-self: flex-end
+  margin-right: 4%

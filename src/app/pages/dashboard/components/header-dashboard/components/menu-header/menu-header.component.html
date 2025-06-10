@@ -1,0 +1,14 @@
+<div class="sidebar">
+  <h2>Menu</h2>
+  <ol>
+    @for (item of menuOptions; track $index) {
+    <li>
+      <button (click)="executeDeterminedFunction(item.method)">
+        <span>{{ item.type }}</span>
+        <mat-icon>{{ item.icon }}</mat-icon>
+      </button>
+    </li>
+  }
+  </ol>
+
+</div>

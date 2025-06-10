@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Curso de Meditação para Iniciantes",
+    "preco": 49.90,
+    "concentracao": "Básico",
+    "descricao": "Aprenda a meditar e controlar a ansiedade com práticas simples.",
+    "estoque": 100,
+    "categoria": "Bem-estar",
+    "avaliacao": 4.8,
+    "status": true,
+    "imagem": "https://cdn.pixabay.com/photo/2017/04/08/22/26/buddhism-2214532_960_720.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Introdução à Programação com JavaScript",
+    "preco": 59.90,
+    "concentracao": "Básico",
+    "descricao": "Aprenda os fundamentos de programação com JavaScript na prática.",
+    "estoque": 60,
+    "categoria": "Tecnologia",
+    "avaliacao": 4.7,
+    "status": true,
+    "imagem": "https://cdn.pixabay.com/photo/2019/10/03/12/12/javascript-4523100_960_720.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Marketing Digital para Pequenos Negócios",
+    "preco": 69.90,
+    "concentracao": "Intermediário",
+    "descricao": "Aprenda a divulgar seus produtos ou serviços online com técnicas modernas.",
+    "estoque": 50,
+    "categoria": "Negócios",
+    "avaliacao": 4.9,
+    "status": true,
+    "imagem": "https://cdn.pixabay.com/photo/2016/10/09/08/32/digital-marketing-1725340_960_720.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Curso de Python com Projetos Práticos",
+    "preco": 79.90,
+    "concentracao": "Intermediário",
+    "descricao": "Aprenda Python criando pequenos projetos do zero.",
+    "estoque": 70,
+    "categoria": "Tecnologia",
+    "avaliacao": 4.6,
+    "status": true,
+    "imagem": "https://cdn.pixabay.com/photo/2015/09/05/20/02/coding-924920_960_720.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Planejamento Financeiro Pessoal",
+    "preco": 39.90,
+    "concentracao": "Básico",
+    "descricao": "Aprenda a organizar sua grana, sair do aperto e investir com inteligência.",
+    "estoque": 40,
+    "categoria": "Negócios",
+    "avaliacao": 4.5,
+    "status": true,
+    "imagem": "https://cdn.pixabay.com/photo/2018/07/13/23/03/financing-3536755_960_720.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Design Gráfico com Canva",
+    "preco": 29.90,
+    "concentracao": "Básico",
+    "descricao": "Crie artes incríveis para redes sociais mesmo sem ser designer.",
+    "estoque": 80,
+    "categoria": "Tecnologia",
+    "avaliacao": 4.3,
+    "status": true,
+    "imagem": "https://cdn.pixabay.com/photo/2015/01/08/18/12/startup-593305_960_720.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Mindfulness e Redução de Estresse",
+    "preco": 44.90,
+    "concentracao": "Básico",
+    "descricao": "Técnicas de atenção plena para mais equilíbrio emocional.",
+    "estoque": 90,
+    "categoria": "Saúde",
+    "avaliacao": 4.4,
+    "status": true,
+    "imagem": "https://cdn.pixabay.com/photo/2017/01/09/22/47/woman-1967892_960_720.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Gestão de Tempo e Produtividade",
+    "preco": 49.90,
+    "concentracao": "Intermediário",
+    "descricao": "Organize sua rotina para render mais sem se sobrecarregar.",
+    "estoque": 45,
+    "categoria": "Desenvolvimento Pessoal",
+    "avaliacao": 4.8,
+    "status": true,
+    "imagem": "https://cdn.pixabay.com/photo/2016/11/18/12/55/office-1834294_960_720.jpg"
+  }
+]

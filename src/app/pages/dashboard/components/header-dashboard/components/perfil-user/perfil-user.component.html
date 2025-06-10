@@ -1,0 +1,9 @@
+<div class="card">
+  <ol>
+    @for (item of menuOptions; track $index) {
+      <li><button (click)="executeDeterminetedFunction(item.method)">{{item.type}}<mat-icon>{{item.icon}}</mat-icon></button></li>
+    }
+
+  </ol>
+</div>
+

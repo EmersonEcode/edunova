@@ -1,94 +1,298 @@
-.sign-in-container
-  left: 0
-  width: 50%
-  z-index: 2
+// Variáveis
+$primary-color: #00A8E8
+$secondary-color: #3E92CC
+$white: #FFFFFF
+$gray-light: #f5f5f5
+$gray-medium: #e0e0e0
+$gray-dark: #333
+$error-color: #d32f2f
+$success-color: #3E92CC
+$border-radius: 8px
+$transition-time: 0.3s
 
-  .container.right-panel-active &
-    transform: translateX(100%)
-
-h1
-  font-weight: bold
-  margin: 0
-
-
-.form-container
-  position: absolute
-  top: 0
+// Formulário
+.auth-form
+  width: 100%
+  max-width: 500px
   height: 100%
-  transition: all 0.6s ease-in-out
+  margin: 0 auto
+  padding: 3rem
+  background: $white
+  border-radius: $border-radius
 
+  h1
+    text-align: center
+    margin-bottom: 1.5rem
+    color: $primary-color
+    font-size: 1.8rem
 
-h1
-  font-weight: bold
-  margin: 0
-
-
-.social-container
-  margin: 20px 0
-
-.social-container a
-  border: 1px solid #DDDDDD
-  border-radius: 50%
-  display: inline-flex
-  justify-content: center
-  align-items: center
-  margin: 0 5px
-  height: 40px
-  width: 40px
-
-p
-  font-size: 14px
-  font-weight: 100
-  line-height: 20px
-  letter-spacing: 0.5px
-  margin: 20px 0 30px
-
-span
-  font-size: 12px
-
-a
-  color: #333
-  font-size: 14px
-  text-decoration: none
-  margin: 15px 0
-
-
-button
-  border-radius: 20px
-  border: 1px solid #59a038
-  background-color: #55893D
-  color: #FFFFFF
-  font-size: 12px
-  font-weight: bold
-  padding: 12px 45px
-  letter-spacing: 1px
-  text-transform: uppercase
-  transition: transform 80ms ease-in
-  cursor: pointer
-
-  &:active
-    transform: scale(0.95)
-
-  &:focus
-    outline: none
-
-  &.ghost
-    background-color: transparent
-    border-color: #FFFFFF
-
-form
-  background-color: #FFFFFF
+.auth-footer
   display: flex
   align-items: center
   justify-content: center
-  flex-direction: column
-  padding: 0 50px
-  height: 100%
-  text-align: center
+  gap: 0.5rem
+  margin-top: 1.5rem
+  padding-top: 1.5rem
+  border-top: 1px solid $gray-light
+  font-size: 0.9rem
+  color: $gray-dark
 
-input
-  background-color: #eee
+  button
+    background: none
+    border: none
+    color: $primary-color
+    font-weight: 500
+    cursor: pointer
+    padding: 0.25rem 0.5rem
+    border-radius: 4px
+    transition: all $transition-time ease
+    font-size: 0.9rem
+
+    &:hover
+      text-decoration: underline
+      background-color: rgba($primary-color, 0.1)
+
+    &:focus
+      outline: none
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.3)
+// Grupos de formulário
+.form-group
+  margin-bottom: 1.5rem
+  position: relative
+
+.return-to-home
+  padding: 10px
   border: none
-  padding: 12px 15px
-  margin: 8px 0
+  background-color: transparent
+  cursor: pointer
+  border-radius: 10px
+  &:hover
+        transform: translateY(-2px)
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15)
+// Inputs
+input
   width: 100%
+  padding: 12px 16px
+  border: 1px solid $gray-medium
+  border-radius: $border-radius
+  font-size: 1rem
+  transition: all $transition-time ease
+  background-color: $white
+
+  &:focus
+    border-color: $primary-color
+    box-shadow: 0 0 0 2px rgba($primary-color, 0.2)
+    outline: none
+
+  &.input-error
+    border-color: $error-color
+    background-color: rgba($error-color, 0.03)
+
+// Container de senha
+.password-container
+  position: relative
+
+  .toggle-password
+    position: absolute
+    right: 12px
+    top: 50%
+    transform: translateY(-50%)
+    background: none
+    border: none
+    color: $gray-dark
+    cursor: pointer
+    padding: 5px
+    font-size: 1rem
+
+    &:hover
+      color: $primary-color
+
+    .material-icons-outlined
+      font-size: 1.2rem
+
+// Checkbox personalizado
+.remember-me
+  display: flex
+  align-items: center
+  position: relative
+  padding-left: 28px
+  cursor: pointer
+  user-select: none
+  font-size: 0.9rem
+
+  input
+    position: absolute
+    opacity: 0
+    cursor: pointer
+    height: 0
+    width: 0
+
+  .checkmark
+    position: absolute
+    left: 0
+    height: 20px
+    width: 20px
+    background-color: $white
+    border: 1px solid $gray-medium
+    border-radius: 4px
+    transition: all $transition-time ease
+
+    &:after
+      content: ""
+      position: absolute
+      display: none
+      left: 7px
+      top: 3px
+      width: 5px
+      height: 10px
+      border: solid $white
+      border-width: 0 2px 2px 0
+      transform: rotate(45deg)
+
+  input:checked ~ .checkmark
+    background-color: $primary-color
+    border-color: $primary-color
+
+    &:after
+      display: block
+
+// Opções do formulário
+.form-options
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin: 1rem 0 1.5rem
+  font-size: 0.9rem
+
+  .forgot-password
+    color: $primary-color
+    text-decoration: none
+
+    &:hover
+      text-decoration: underline
+
+// Mensagens de erro
+.error-message
+  color: $error-color
+  font-size: 0.8rem
+  margin-top: 8px
+  display: flex
+  align-items: center
+  padding: 8px 12px
+  background-color: rgba($error-color, 0.05)
+  border-radius: $border-radius
+  border-left: 3px solid $error-color
+  animation: fadeIn $transition-time ease
+
+  .material-icons-outlined
+    font-size: 16px
+    margin-right: 8px
+
+  &.server-error
+    background-color: rgba($error-color, 0.1)
+    font-weight: 500
+
+// Botão
+.btn
+  width: 100%
+  padding: 14px
+  background-color: $primary-color
+  color: $white
+  border: none
+  border-radius: $border-radius
+  font-size: 1rem
+  font-weight: 600
+  cursor: pointer
+  transition: all $transition-time ease
+  margin-top: 1rem
+  position: relative
+  height: 46px
+
+  &:hover
+    background-color: darken($primary-color, 8%)
+
+  &:disabled
+    background-color: lighten($primary-color, 20%)
+    cursor: not-allowed
+    opacity: 0.7
+
+  .loading-spinner
+    display: inline-block
+    width: 20px
+    height: 20px
+    border: 3px solid rgba($white, 0.3)
+    border-radius: 50%
+    border-top-color: $white
+    animation: spin 1s ease-in-out infinite
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+
+// Rodapé do formulário
+.auth-footer
+  text-align: center
+  margin-top: 1.5rem
+  font-size: 0.9rem
+  color: $gray-dark
+
+  .auth-link
+    color: $primary-color
+    text-decoration: none
+    font-weight: 500
+    margin-left: 5px
+    cursor: pointer
+
+    &:hover
+      text-decoration: underline
+
+// Animações
+@keyframes fadeIn
+  from
+    opacity: 0
+    transform: translateY(-5px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes spin
+  to
+    transform: translateX(-50%) rotate(360deg)
+
+// Ícones do Material
+.material-icons-outlined
+  font-family: 'Material Icons Outlined'
+  font-weight: normal
+  font-style: normal
+  font-size: 24px
+  line-height: 1
+  letter-spacing: normal
+  text-transform: none
+  display: inline-block
+  white-space: nowrap
+  word-wrap: normal
+  direction: ltr
+  -webkit-font-feature-settings: 'liga'
+  -webkit-font-smoothing: antialiased
+
+// Responsividade
+@media (max-width: 480px)
+  .auth-form
+    padding: 1.5rem
+    box-shadow: none
+    border: 1px solid $gray-medium
+
+  h1
+    font-size: 1.5rem
+
+  .form-options
+    flex-direction: column
+    align-items: flex-start
+    gap: 1rem
+
+    .forgot-password
+      margin-left: 0
+
+
+
+.googleBtn
+  margin-top: 10px

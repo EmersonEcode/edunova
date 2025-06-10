@@ -1,0 +1,122 @@
+<div class="container mt-4">
+    <button class="return-to-list" (click)="redirectToList()"><mat-icon>arrow_back</mat-icon></button>
+    <h2>{{ isEditMode ? 'Editar' : 'Adicionar' }} Curso</h2>
+    
+    <form [formGroup]="produtoForm" (ngSubmit)="onSubmit()" novalidate>
+      <!-- Seção de Informações Básicas -->
+      <fieldset class="mb-4 p-3 border rounded">
+        <legend class="w-auto px-2">Informações Básicas</legend>
+        
+        <!-- Nome do Produto -->
+        <div class="mb-3">
+          <label for="nomeProduto" class="form-label">Nome do Curso*</label>
+          <input type="text" class="form-control" id="nomeProduto" formControlName="name" placeholder="Ex: Curso de ....">
+          <div *ngIf="formControls['name'].touched && formControls['name'].errors" class="text-danger">
+            <div *ngIf="formControls['name'].errors?.['required']">Nome é obrigatório</div>
+            <div *ngIf="formControls['name'].errors?.['maxlength']">Máximo de 100 caracteres</div>
+          </div>
+        </div>
+
+        <!-- Categoria -->
+        <div class="mb-3">
+          <label for="categoriaProduto" class="form-label">Categoria*</label>
+          <select class="form-select" id="categoriaProduto" formControlName="categoria">
+            <option value="">Selecione uma categoria...</option>
+            <option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</option>
+          </select>
+          <div *ngIf="formControls['categoria'].touched && formControls['categoria'].errors" class="text-danger">
+            <div *ngIf="formControls['categoria'].errors?.['required']">Categoria é obrigatória</div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Seção de Detalhes Técnicos -->
+      <fieldset class="mb-4 p-3 border rounded">
+        <legend class="w-auto px-2">Detalhes Técnicos</legend>
+        
+        <!-- Concentração -->
+        <div class="mb-3">
+          <label for="concentracaoProduto" class="form-label">Dificuldade</label>
+          <select class="form-select" id="concentracaoProduto" formControlName="concentracao">
+            <option value="">Selecione uma categoria...</option>
+            <option *ngFor="let cat of dificuldades" [value]="cat">{{ cat }}</option>
+          </select>
+          <div *ngIf="formControls['concentracao'].touched && formControls['concentracao'].errors" class="text-danger">
+            <div *ngIf="formControls['concentracao'].errors?.['required']">Dificuldade é obrigatória</div>
+          </div>
+        </div>
+
+        <!-- Descrição -->
+        <div class="mb-3">
+          <label for="descricaoProduto" class="form-label">Descrição Completa</label>
+          <textarea class="form-control" id="descricaoProduto" formControlName="descricao" rows="3" 
+                    placeholder="Informações detalhadas sobre o produto"></textarea>
+          <div *ngIf="formControls['descricao'].touched && formControls['descricao'].errors" class="text-danger">
+            <div *ngIf="formControls['descricao'].errors?.['required']">Descrição é obrigatória</div>
+            <div *ngIf="formControls['descricao'].errors?.['maxlength']">Máximo de 500 caracteres</div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Seção de Estoque e Preço -->
+      <fieldset class="mb-4 p-3 border rounded">
+        <legend class="w-auto px-2">Preço</legend>
+        
+        <div class="row">
+          <!-- Preço -->
+          <div class="col-md-6 mb-3">
+            <label for="precoProduto" class="form-label">Preço de Venda (R$)*</label>
+            <div class="input-group">
+              <span class="input-group-text">R$</span>
+              <input type="number" step="0.01" class="form-control" id="precoProduto" 
+                     formControlName="preco" min="0.01" placeholder="0,00">
+            </div>
+            <div *ngIf="formControls['preco'].touched && formControls['preco'].errors" class="text-danger">
+              <div *ngIf="formControls['preco'].errors?.['required']">Preço é obrigatório</div>
+              <div *ngIf="formControls['preco'].errors?.['min']">Valor mínimo: R$0,01</div>
+            </div>
+          </div>
+          
+        </div>
+
+        <!-- Status -->
+        <div class="form-check form-switch mb-3">
+          <input class="form-check-input" type="checkbox" id="statusProduto" formControlName="status">
+          <label class="form-check-label" for="statusProduto">Produto disponível para venda</label>
+        </div>
+      </fieldset>
+
+      <!-- Seção de Avaliação e Imagem -->
+      <fieldset class="mb-4 p-3 border rounded">
+        <legend class="w-auto px-2">Imagem</legend>
+        
+
+        <!-- Imagem -->
+        <div class="mb-3">
+          <label for="imagemProduto" class="form-label">URL da Imagem do Produto</label>
+          <input type="url" class="form-control" id="imagemProduto" 
+                 formControlName="imagem" placeholder="https://exemplo.com/imagem.jpg">
+          <small class="text-muted">A imagem deve estar hospedada e acessível publicamente</small>
+          <div *ngIf="formControls['imagem'].touched && formControls['imagem'].errors" class="text-danger">
+            <div *ngIf="formControls['imagem'].errors?.['required']">Imagem é obrigatória</div>
+            <div *ngIf="formControls['imagem'].errors?.['pattern']">URL inválida (deve começar com http:// ou https://)</div>
+          </div>
+          
+          <!-- Pré-visualização da imagem -->
+          <div *ngIf="produtoForm.get('imagem')?.value" class="mt-2">
+            <img [src]="produtoForm.get('imagem')?.value" 
+                 alt="Pré-visualização da imagem" 
+                 class="img-thumbnail" 
+                 style="max-height: 150px; max-width: 100%;">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Botões de Ação -->
+      <div class="d-flex justify-content-end gap-2">
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary">
+          <i class="bi bi-save me-1"></i> {{ isEditMode ? 'Atualizar' : 'Salvar' }} Produto
+        </button>
+      </div>
+    </form>
+</div>

@@ -1,0 +1,38 @@
+<section class="content">
+  <app-dashboard-banner></app-dashboard-banner>
+  @if(homeSelectNoFilterAndPagination){
+    <div class="filter">
+    <app-filter-item (categoriaSelecionadaEmit)="getCategoriaSelecionada($event)"></app-filter-item>
+    </div>
+  }
+  
+  <section class="list-itens">
+    @for (item of ProdutosPaginados; track $index) {
+      <app-card-product 
+      name={{item.name}} 
+      imagem={{item.imagem}}
+      categoria={{item.categoria}}
+      concentracao={{item.concentracao}}
+      descricao={{item.descricao}}
+      preco={{item.preco}}
+      status={{item.status}}
+      [produto]="item"
+      btnTitle={{btnTitleCard}}
+      ></app-card-product>
+    }
+  </section>
+
+  @if(homeSelectNoFilterAndPagination){
+    <div class="paginacao">
+    @for (paginaNum of totalPaginas; track $index) {
+      <button
+        class="btn-pagina"
+        [class.ativa]="pagina === paginaNum"
+        (click)="pagina = paginaNum">
+        {{ paginaNum }}
+      </button>
+    }
+  </div>
+  }
+  
+</section>

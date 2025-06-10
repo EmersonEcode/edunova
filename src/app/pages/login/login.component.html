@@ -1,12 +1,26 @@
-<section class="main">
-  <section class="container-login">
-    <app-signin-form></app-signin-form>
-    <app-signup-form></app-signup-form>
-    <app-overlay></app-overlay>
-  </section>
+<!-- login.component.html -->
+<section class="main" [style.background]="backgroundColor">
 
-  <footer>
+  <div class="auth-container" [@fadeInOut]>
+    <!-- Formulário de Login -->
+    @if (typeSelect) {
+      <section class="auth-form">
+        <app-signin-form
+          (eventEmitterRedirectionToSignIn)="typeSelected($event)">
+        </app-signin-form>
+      </section>
+    }
 
-  </footer>
+    <!-- Formulário de Registro -->
+    @if (!typeSelect) {
+      <section class="auth-form">
+        <app-signup-form
+          (eventEmitterRedirectionToLogin)="typeSelected($event)">
+        </app-signup-form>
+      </section>
+    }
+
+
+    </div>
+  
 </section>
-

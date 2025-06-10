@@ -1,0 +1,8 @@
+<div class="select-container">
+    <select [(ngModel)]="categoriaSelecionada" (change)="enviarCategoria(categoriaSelecionada)">
+      <option value="Todos">Todos</option>
+      @for(item of dataCategoria; track $index){
+        <option value='{{item}}'>{{item}}</option>
+      }
+    </select>
+  </div>
