@@ -70,7 +70,7 @@ export class SignInFormComponent implements OnInit {
       console.log('Google Identity API carregada com sucesso');
 
       window.google.accounts.id.initialize({
-        client_id: '136683753273-qjr5f0308srfakbbsi6mrnmvb173at0r.apps.googleusercontent.com', // Coloque seu client_id aqui
+        client_id: '554295874383-mufop2au59epre63sf2fegfc3giknj2i.apps.googleusercontent.com', // Coloque seu client_id aqui
         callback: this.handleCredentialResponse.bind(this), // Define o callback para processar o token
       });
 
